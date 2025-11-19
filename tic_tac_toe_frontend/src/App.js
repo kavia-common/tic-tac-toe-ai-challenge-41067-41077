@@ -103,6 +103,20 @@ function App() {
     ? PLAYER_LABELS.X
     : PLAYER_LABELS.O;
 
+  // Animate board in on mount (with CSS .animate-in)
+  const [boardAnimate, setBoardAnimate] = useState(false);
+  useEffect(() => {
+    setBoardAnimate(true);
+  }, []);
+
+  // Animate status text on change
+  const [statusAnim, setStatusAnim] = useState(false);
+  useEffect(() => {
+    setStatusAnim(true);
+    const t = setTimeout(() => setStatusAnim(false), 550);
+    return () => clearTimeout(t);
+  }, [status, isXNext]); // re-animate on update
+
   return (
     <div className="App">
       <header className="App-header" style={{ minHeight: "100vh", justifyContent: "flex-start" }}>
@@ -119,8 +133,9 @@ function App() {
             Tic Tac Toe
           </h1>
           <div
-            className="ttt-status"
+            className={`ttt-status${statusAnim ? " status-anim" : ""}${isGameOver && winLine ? " win-status" : ""}`}
             aria-live="polite"
+            aria-atomic="true"
             style={{
               color: isGameOver
                 ? status.includes("win")
@@ -141,6 +156,7 @@ function App() {
             onSquareClick={handleSquareClick}
             disabled={isGameOver || !isXNext}
             winLine={winLine}
+            className={boardAnimate ? "animate-in" : ""}
           />
           {/* Restart Button */}
           <button
