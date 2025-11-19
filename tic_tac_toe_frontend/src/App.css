@@ -53,6 +53,146 @@
   position: relative;
 }
 
+/* === Tic Tac Toe App Custom Styles === */
+
+.ttt-container {
+  background: #fff;
+  border: 1.5px solid #e9ecef;
+  border-radius: 18px;
+  padding: 2.5rem 2.2rem 2rem;
+  box-shadow: 0 4px 24px 0 rgba(44, 62, 80, 0.07), 0 1.5px 10px 0 rgba(59,130,246,0.05);
+  margin: 3rem 0 0 0;
+  min-width: 320px;
+  max-width: 360px;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ttt-title {
+  margin-top: 0;
+  font-size: 2.25rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.1rem;
+  line-height: 1.2;
+}
+
+.ttt-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.6rem 0 0 0;
+  width: 270px;
+  max-width: 90vw;
+  user-select: none;
+}
+
+.ttt-board-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.ttt-square {
+  width: 88px;
+  height: 88px;
+  margin: 2px;
+  padding: 0;
+  background: #f8fafc;
+  border: 3px solid #3b82f6;
+  border-radius: 12px;
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.18s, border 0.18s, color 0.18s;
+  box-shadow: 0 0.5px 5px 0 rgba(59,130,246,0.03);
+  position: relative;
+}
+
+/* On hover/focus of square */
+.ttt-square:not(:disabled):hover,
+.ttt-square:not(:disabled):focus {
+  background: #e0effe;
+  border-color: #06b6d4;
+  color: #06b6d4;
+  z-index: 2;
+}
+
+.ttt-square:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.ttt-square-win {
+  animation: ttt-glow 0.8s cubic-bezier(0.4,0,0.2,1) infinite alternate;
+  background: #3b82f61a !important;
+  border-color: #06b6d4 !important;
+  color: #fff !important;
+}
+
+@keyframes ttt-glow {
+  0%   { box-shadow: 0 0 0 0 #06b6d466; }
+  100% { box-shadow: 0 0 8px 4px #06b6d433; }
+}
+
+.ttt-status {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.12s;
+  min-height: 1.7rem;
+}
+
+.ttt-restart-btn {
+  margin-top: 1rem;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.77rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 2px 7px rgba(59,130,246,0.10);
+  transition: background 0.18s, opacity 0.18s;
+}
+
+.ttt-restart-btn:hover,
+.ttt-restart-btn:focus {
+  background: #06b6d4;
+  opacity: 0.93;
+}
+
+.ttt-footer {
+  margin-top: 2.5rem;
+}
+
+/* Responsive for mobile devices */
+@media (max-width: 600px) {
+  .ttt-container {
+    max-width: 97vw;
+    min-width: 0;
+    padding: 1.2rem 0.1rem 1rem;
+    border-radius: 12px;
+  }
+  .ttt-board {
+    width: 97vw;
+    min-width: 0;
+    max-width: 97vw;
+  }
+  .ttt-square {
+    width: 27vw;
+    height: 27vw;
+    font-size: 1.7rem;
+  }
+}
+
 .App-link {
   color: var(--text-secondary);
   transition: color 0.3s ease;
